@@ -1,2 +1,2 @@
 source adb-functions
-listApps
+openUrl $1

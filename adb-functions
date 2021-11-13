@@ -1,0 +1,51 @@
+#!/bin/false
+# to use this file, just add `source adb-functions` to other bash files
+
+function type(){
+	adb shell input text $1
+}
+
+function lock(){
+	adb shell input keyevent 82
+	adb shell input keyevent 26
+}
+
+function unlock(){
+	adb shell input keyevent 26
+	adb shell input keyevent 82
+}
+
+function pressEnter(){
+	adb shell input keyevent 66
+}
+
+function pressHome(){
+	adb shell input keyevent 3
+}
+
+function openUrl(){
+	adb shell am start -a android.intent.action.VIEW -d $1
+}
+
+function takeScreenshot(){
+	if [ $# -eq 0 ]
+	then
+		FILENAME="screenshot.png"
+	else
+		FILENAME="$1.png"
+	fi
+	adb exec-out screencap -p | sed "s/\r\n/\n/" > $FILENAME
+}
+
+function deviceResolution(){
+	adb shell wm size
+}
+
+function deviceAndroidVersion(){
+	adb devices | tail -n +2 | cut -sf -1 | xargs -I X adb -s X shell getprop ro.build.version.release  
+}
+
+function listApps(){
+	adb shell pm list packages -f | grep -o 'base.apk=.*' | sed 's/base.apk=//'
+}
+
