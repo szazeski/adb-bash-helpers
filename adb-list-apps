@@ -1,0 +1,1 @@
+adb shell 'pm list packages -f' | grep -o 'base.apk=.*' | sed 's/base.apk=//'
