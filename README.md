@@ -10,6 +10,8 @@ Simply check out this repo to your machine
 
 You may want to add the folder you checked out into your system PATH so you can directly call these helper commands.
 
+Default mac directory:
+`export PATH=$PATH:~/Library/Android/sdk/platform-tools:~/adb-bash-helpers`
 
 # Functions
 
